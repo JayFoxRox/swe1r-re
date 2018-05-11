@@ -3,6 +3,55 @@
 // Research based on patched US version
 
 
+//----- (00421F30) --------------------------------------------------------
+// Parses data/sounds.map
+signed int sub_421F30()
+{
+  signed int result; // eax
+  int v1; // eax
+  _DWORD *v2; // ebp
+  _DWORD *v3; // [esp+10h] [ebp-4h]
+
+  if ( sub_487AE0() && !_strcmpi(dword_EC8E84, aNumsounds) )
+  {
+    v1 = atoi(dword_EC8E88);
+    dword_E9F360 = v1;
+    if ( v1 )
+    {
+      sub_422770(v1);
+      if ( sub_487AE0() )
+      {
+        v2 = v3;
+        do
+        {
+          if ( !strcmp(dword_EC8E84, aEnd) )
+            break;
+          if ( _strcmpi(dword_EC8E84, aNumvoices) )
+          {
+            if ( dword_4EB450 )
+              v2 = sub_4227E0(dword_EC8E84, 1);
+            if ( !v2 )
+              v2 = sub_4227E0(aSfxCrashWoodWa, 1);
+          }
+          else
+          {
+            dword_E9F360 -= atoi(dword_EC8E88);
+          }
+        }
+        while ( sub_487AE0() );
+      }
+    }
+    result = 0;
+  }
+  else
+  {
+    if ( *((_DWORD *)off_4B6D34 + 10) )
+      sub_4226C0();
+    result = 1;
+  }
+  return result;
+}
+
 //----- (00440550) --------------------------------------------------------
 // Plays a sound effect?
 // a1 = Sound effect index?
